@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In A Pinch Lab Resources</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #3aaa7e;
+    --green-dark: #2b8a65;
+    --green-light: #e8f7f1;
+    --green-mid: #c2eadb;
+    --cream: #fafaf8;
+    --text: #1a1a1a;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --tag-bg: #f0faf5;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .nav-logo-hex {
+    width: 36px;
+    height: 36px;
+  }
+
+  .nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .nav-logo-text .name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.1rem;
+    color: var(--green);
+  }
+
+  .nav-logo-text .sub {
+    font-size: 0.6rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  nav a:hover { color: var(--green); }
+
+  .nav-cta {
+    background: var(--green);
+    color: white !important;
+    padding: 0.5rem 1.1rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+  }
+
+  .nav-cta:hover { background: var(--green-dark); }
+
+  .nav-links { display: flex; gap: 1.8rem; align-items: center; }
+
+  /* HERO */
+  .hero {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    text-align: center;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    background: var(--green-light);
+    color: var(--green-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+    color: var(--text);
+  }
+
+  .hero h1 span { color: var(--green); }
+
+  .hero p {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+    color: var(--green);
+    font-style: italic;
+    margin-bottom: 2.2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--green);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: white;
+    color: var(--green);
+    padding: 0.8rem 1.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 0.95rem;
+    border: 1.5px solid var(--green);
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .btn-secondary:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: white;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 1.2rem 2rem;
+    text-align: center;
+  }
+
+  .trust-bar p {
+    font-size: 0.8rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .trust-items {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .trust-item {
+    font-size: 0.85rem;
+    color: var(--text);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .trust-item span { color: var(--green); font-size: 1rem; }
+
+  /* SECTION SHARED */
+  section { padding: 4.5rem 2rem; }
+
+  .section-inner { max-width: 860px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .section-desc {
+    color: var(--muted);
+    font-size: 1rem;
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+  }
+
+  /* HOW IT WORKS */
+  .how { background: white; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .step {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 1.6rem;
+    border: 1px solid var(--border);
+  }
+
+  .step-num {
+    width: 32px;
+    height: 32px;
+    background: var(--green);
+    color: white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 0.9rem;
+  }
+
+  .step h3 {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .step p {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  /* SAMPLE ACTIVITY CARD */
+  .sample { background: var(--cream); }
+
+  .activity-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    background: white;
+  }
+
+  .activity-header {
+    background: var(--green);
+    color: white;
+    padding: 1.2rem 1.6rem;
+  }
+
+  .activity-header .std-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 0.3rem;
+  }
+
+  .activity-header h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .activity-header p {
+    font-size: 0.88rem;
+    opacity: 0.9;
+    line-height: 1.5;
+  }
+
+  .activity-body { padding: 1.6rem; }
+
+  .activity-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .activity-desc {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .activity-tags {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.4rem;
+  }
+
+  .tag {
+    background: var(--tag-bg);
+    color: var(--green-dark);
+    border: 1px solid var(--green-mid);
+    border-radius: 100px;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.78rem;
+    font-weight: 500;
+  }
+
+  .supply-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+  }
+
+  .supply-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3rem 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .supply-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+
+  .supply-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  .pro-tip {
+    background: var(--green-light);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.4rem;
+  }
+
+  .pro-tip .tip-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--green-dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .pro-tip p {
+    font-size: 0.88rem;
+    color: var(--green-dark);
+    line-height: 1.5;
+  }
+
+  .price-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .price-box {
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .price-box.kit {
+    background: var(--green);
+    color: white;
+  }
+
+  .price-box.diy {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .price-box .price-type {
+    font-size: 0.78rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+    opacity: 0.85;
+  }
+
+  .price-box .price-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  .price-box .price-sub {
+    font-size: 0.72rem;
+    margin-top: 0.2rem;
+    opacity: 0.75;
+  }
+
+  /* WHY */
+  .why { background: white; }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+    margin-top: 2rem;
+  }
+
+  .why-card {
+    padding: 1.4rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+  }
+
+  .why-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .why-card h3 {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-size: 0.95rem;
+  }
+
+  .why-card p {
+    color: var(--muted);
+    font-size: 0.87rem;
+    line-height: 1.5;
+  }
+
+  /* FUNDING */
+  .funding { background: var(--cream); }
+
+  .funding-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    max-width: 560px;
+    margin: 0 auto;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+  }
+
+  .funding-card .ask-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .funding-card .ask-amount {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem;
+    color: var(--green);
+    text-align: center;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+
+  .funding-card .ask-sub {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.88rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .funding-items { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1.6rem; }
+
+  .funding-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    border: 1px solid var(--border);
+  }
+
+  .funding-badge {
+    background: var(--green);
+    color: white;
+    border-radius: 6px;
+    padding: 0.35rem 0.7rem;
+    font-weight: 700;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    min-width: 64px;
+    text-align: center;
+  }
+
+  .funding-item-text h4 {
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .funding-item-text p {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+
+  .funding-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 1rem;
+  }
+
+  .funding-tagline {
+    text-align: center;
+    color: var(--green);
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  /* ABOUT */
+  .about { background: white; }
+
+  .about-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .about-text .section-title { margin-bottom: 1rem; }
+
+  .about-text p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .about-creds {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.2rem;
+  }
+
+  .cred {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+
+  .cred-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+
+  .about-visual {
+    background: var(--green-light);
+    border-radius: 14px;
+    padding: 2rem;
+    text-align: center;
+    border: 1px solid var(--green-mid);
+  }
+
+  .about-visual .big-stat {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .about-visual .stat-desc {
+    color: var(--green-dark);
+    font-size: 0.88rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-visual .quote {
+    font-style: italic;
+    color: var(--green-dark);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border-top: 1px solid var(--green-mid);
+    padding-top: 1rem;
+  }
+
+  /* EMAIL SIGNUP */
+  .signup {
+    background: var(--green);
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+
+  .signup h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    margin-bottom: 0.7rem;
+  }
+
+  .signup p {
+    opacity: 0.85;
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+    max-width: 440px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .signup-form {
+    display: flex;
+    gap: 0.6rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .signup-form input {
+    flex: 1;
+    min-width: 220px;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+  }
+
+  .signup-form button {
+    background: var(--green-dark);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .signup-form button:hover { background: #1f6b4d; }
+
+  /* FOOTER */
+  footer {
+    background: var(--text);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+  }
+
+  footer .footer-logo {
+    font-family: 'DM Serif Display', serif;
+    color: var(--green);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+    opacity: 0.5;
+    margin-bottom: 0.3rem;
+  }
+
+  footer .footer-tagline {
+    font-size: 0.78rem;
+    color: var(--green);
+    font-style: italic;
+    opacity: 0.8;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 640px) {
+    .about-inner { grid-template-columns: 1fr; }
+    .nav-links { gap: 1rem; }
+    .price-row { grid-template-columns: 1fr; }
+    .supply-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <svg class="nav-logo-hex" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="18,2 32,10 32,26 18,34 4,26 4,10" fill="#3aaa7e"/>
+      <ellipse cx="18" cy="22" rx="7" ry="9" fill="rgba(255,255,255,0.25)"/>
+      <ellipse cx="18" cy="22" rx="5" ry="7" fill="rgba(255,255,255,0.5)"/>
+      <rect x="16" y="11" width="4" height="4" rx="1" fill="white"/>
+      <circle cx="15" cy="21" r="1.2" fill="rgba(58,170,126,0.7)"/>
+      <circle cx="21" cy="23" r="1.2" fill="rgba(58,170,126,0.7)"/>
+    </svg>
+    <div class="nav-logo-text">
+      <span class="name">in a pinch</span>
+      <span class="sub">Lab Resources</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a href="#how">How It Works</a>
+    <a href="#sample">Sample Lab</a>
+    <a href="#about">About</a>
+    <a href="#signup" class="nav-cta">Join the Movement</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow">🏆 Shell Science Lab Challenge National Grand Prize Winner</div>
+  <h1>Real labs for teachers with<br><span>real budgets.</span></h1>
+  <p>Standards-keyed lab activities you can actually pull off with what you have or what you can grab at Walmart.</p>
+  <p class="hero-tagline">Because every great lab is one Ziploc bag away.</p>
+  <div class="hero-buttons">
+    <a href="#sample" class="btn-primary">See a Sample Lab</a>
+    <a href="#signup" class="btn-secondary">Join the Movement</a>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p>Built by a teacher, for teachers</p>
+  <div class="trust-items">
+    <div class="trust-item"><span>✓</span> NGSS & state standards aligned</div>
+    <div class="trust-item"><span>✓</span> Homeschool-friendly</div>
+    <div class="trust-item"><span>✓</span> Walmart & Dollar Tree friendly</div>
+    <div class="trust-item"><span>✓</span> No lab budget? No problem</div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Find a lab. Run it tomorrow.</h2>
+    <p class="section-desc">Search by standard, grade level, or the supplies you already have. Every activity shows you exactly what you need and where to get it.</p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Search your standard</h3>
+        <p>Enter an NGSS code or keyword. Get a list of activities that actually fit your curriculum.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Check your supplies</h3>
+        <p>Every lab includes a quick supply check so you can see what you have and what you need in seconds.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Find your materials</h3>
+        <p>Every lab includes a shopping list with exactly where to find each item at Walmart, Dollar Tree, or wherever is near you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Run the lab</h3>
+        <p>Clear instructions written for real classrooms and kitchen tables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE ACTIVITY -->
+<section class="sample" id="sample">
+  <div class="section-inner">
+    <div class="section-label">Sample Activity</div>
+    <h2 class="section-title">See what a lab card looks like.</h2>
+    <p class="section-desc">Every activity gives you the standard, the supplies, a pro tip, and a DIY path all on one card.</p>
+
+    <div class="activity-card">
+      <div class="activity-header">
+        <div class="std-label">Standard</div>
+        <h3>MS-PS1-2</h3>
+        <p>Analyze and interpret data on the properties of substances before and after interactions to determine if a chemical reaction has occurred.</p>
+      </div>
+      <div class="activity-body">
+        <h3 class="activity-title">Mystery Mixture</h3>
+        <p class="activity-desc">Students combine unknown substances and use evidence (gas production, temperature change, color change) to determine if a chemical reaction occurred. Works in baggies OR an ice cube tray for wells.</p>
+        <div class="activity-tags">
+          <span class="tag">Grades 6–8</span>
+          <span class="tag">45 min</span>
+          <span class="tag">Beginner</span>
+          <span class="tag">Homeschool-friendly</span>
+        </div>
+        <div class="supply-label">Quick Supply Check</div>
+        <div class="supply-grid">
+          <div class="supply-item"><div class="supply-dot"></div>Baking soda</div>
+          <div class="supply-item"><div class="supply-dot"></div>Vinegar</div>
+          <div class="supply-item"><div class="supply-dot"></div>Citric acid</div>
+          <div class="supply-item"><div class="supply-dot"></div>Calcium chloride</div>
+          <div class="supply-item"><div class="supply-dot"></div>pH strips</div>
+          <div class="supply-item"><div class="supply-dot"></div>Ziploc baggies or ice cube tray</div>
+        </div>
+        <div class="pro-tip">
+          <div class="tip-label">Pro tip</div>
+          <p>No microwell plate? An ice cube tray works perfectly as wells and it is reusable. Grab one at Dollar Tree for $1.25.</p>
+        </div>
+        <div class="price-box diy" style="text-align:center; padding: 1rem; background: var(--cream); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 1.2rem;">
+          <div class="price-type" style="font-size:0.78rem; color: var(--muted); margin-bottom:0.3rem;">As low as</div>
+          <div class="price-num" style="font-family: 'DM Serif Display', serif; font-size:2rem; color: var(--green);">~$6</div>
+          <div class="price-sub" style="font-size:0.78rem; color: var(--muted); margin-top:0.2rem;">Walmart + Dollar Tree</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why">
+  <div class="section-inner">
+    <div class="section-label">Why In A Pinch</div>
+    <h2 class="section-title">Built for the reality of science teaching.</h2>
+    <p class="section-desc">Not the Pinterest version. The real one where the budget got cut and you found out about the lab observation at 7 AM.</p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🔬</div>
+        <h3>Standards-first search</h3>
+        <p>Search by NGSS code, topic, or grade band. Every result is curriculum-mapped so you're never just doing a "fun experiment."</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💸</div>
+        <h3>Real budget paths</h3>
+        <p>Every lab shows you exactly what it costs to DIY from Walmart and Dollar Tree — aisle by aisle, item by item.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">🏠</div>
+        <h3>Homeschool-friendly</h3>
+        <p>No fancy lab required. Every activity is designed to work at a kitchen table with materials from your local Walmart or Dollar Tree.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">👩‍🔬</div>
+        <h3>Built by a real teacher</h3>
+        <p>Not a curriculum company. Not a textbook publisher. Every activity has been tested in an actual classroom with actual kids.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <div class="section-label">About</div>
+      <h2 class="section-title">Made by a teacher who knows the struggle.</h2>
+      <p>In A Pinch was born out of a real problem: science teachers are expected to run hands-on labs with shrinking budgets, no prep time, and limited access to materials. I've been that teacher.</p>
+      <p>With 7 years in the classroom and a background as a medical laboratory scientist, I won a national grand prize from the Shell Science Lab Challenge and built the tool I always needed.</p>
+      <div class="about-creds">
+        <div class="cred"><div class="cred-dot"></div>Shell Science Lab Challenge — National Grand Prize Winner</div>
+        <div class="cred"><div class="cred-dot"></div>B.S. Marine Biology</div>
+        <div class="cred"><div class="cred-dot"></div>M.Ed. · District Science Teacher Leader</div>
+        <div class="cred"><div class="cred-dot"></div>11+ years as a Medical Laboratory Scientist</div>
+        <div class="cred"><div class="cred-dot"></div>NSTA Lab Launch Pitch Competition Winner</div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="big-stat">7+</div>
+      <div class="stat-desc">years in the science classroom</div>
+      <div class="quote">"I built the platform I always needed. One that meets teachers where they actually are."</div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL SIGNUP -->
+<section class="signup" id="signup">
+  <h2>Want to help build this?</h2>
+  <p>Got a lab that works every time? Share it here. No TPT links, no fees, no gatekeeping. Just good science that actually runs.</p>
+  <div class="signup-form">
+    <input type="email" placeholder="your@email.com">
+    <button type="button" disabled style="opacity:0.7; cursor: not-allowed;">Coming Soon</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">in a pinch lab resources</div>
+  <p>real labs · real teachers · real budgets</p>
+  <p>inapinchscience.com</p>
+  <p class="footer-tagline">Because every great lab is one Ziploc bag away.</p>
+</footer>
+
+</body>
+</html>
